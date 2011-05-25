@@ -22,6 +22,7 @@ gem 'rack-test', :require => "rack/test", :group => "test"
 gem 'rr', :group => "test"
 gem 'shoulda', :group => "test"
 gem 'shoulda-activemodel', :group => "test"
+gem 'ruby-debug', :group => "test"
 
 
 # Padrino
