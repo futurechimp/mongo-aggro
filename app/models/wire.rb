@@ -10,6 +10,7 @@ class Wire
   # Associations
   #
   has_many :feeds
+  has_many :feed_items
   
   # Validations
   #
