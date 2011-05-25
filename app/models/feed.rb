@@ -15,6 +15,7 @@ class Feed
   # Associations
   #
   belongs_to :wire
+  has_many :feed_items
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>

@@ -26,8 +26,13 @@ end
 FeedItem.blueprint do
   body {"This is the body"}
   date_published { DateTime.now }
-  url
   title
+  url
+end
+
+FeedItem.blueprint(:with_feed_and_wire) do
+  wire { Wire.make }
+  feed { Feed.make }
 end
 
 Wire.blueprint do
@@ -41,17 +46,13 @@ end
 module Factory
   class << self
 
-
-    def make_wire_with_feed_items
-      wire = Wire.make
-      wire.save
-      items = []
-      5.times do
-        feed_item = FeedItem.make(:wire_id => wire.id)
-        items << feed_item
-      end
-      FeedItem.database.bulk_save(items)
-      wire
-    end
+    # def make_wire_and_feed_with_feed_items
+    #       wire = Wire.make(:feed => Feed.make)
+    #       5.times do
+    #         wire.feed_items << FeedItem.make
+    #       end
+    #       wire.feed.feed_items << wire.feed_items
+    #       wire
+    #     end
   end
 end
