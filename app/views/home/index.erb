@@ -1,0 +1,60 @@
+<% content_for :head do %>
+  <!--[if IE]>
+  <script type="text/javascript" src="/javascripts/curvycorners.js"></script>
+  <script type="text/javascript">
+    addEvent(window, 'load', Site.roundedTags);
+  </script>
+  <![endif]-->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Site.init();
+    });
+    window.onresize = Site.checkHeights;
+  </script>
+<% end %>
+
+<!-- start #navigation -->
+<div id="navigation">
+ <h1>Labs</h1>
+ <ul id="selection">
+  <li id="everyone"><a href="#" class="on">Everyone</a></li>
+  <li id="just-head"><a href="#">Just Head</a></li>  
+ </ul>
+ <div id="topics" class="list">
+  <h2>Topics</h2>
+  <ul>
+    <li><a href="#">Blah</a></li>
+    <li><a href="#">Foo</a></li>
+    <li><a href="#" class="on">Bar</a></li>
+    <li><a href="#">More Blah</a></li>
+    <li><a href="#">Potato</a></li>
+  </ul>
+ </div>
+ <div id="tags">
+  <h2>Bar:Tags</h2>
+  <ul>
+    <li><a href="#">Blah</a></li>
+    <li><a href="#">Foo</a></li>
+    <li><a href="#" class="on">Bar</a></li>
+    <li><a href="#">More</a></li>
+    <li><a href="#">Potato</a></li>
+  </ul>
+ </div>
+ <div id="explore" class="list">
+  <h2>Explore</h2>
+  <ul>
+    <li><a href="#">Blah</a></li>
+    <li><a href="#">Foo</a></li>
+    <li><a href="#">Bar</a></li>
+    <li><a href="#">More Blah</a></li>
+    <li><a href="#">Potato</a></li>
+  </ul>
+ </div>
+</div>
+<!-- end #navigation -->
+
+<!-- start #feed-items -->
+<div id="feed-items">
+  <%= partial 'shared/feed_item', :collection => @feed_items %>
+</div>
+<!-- end #feed-items -->
