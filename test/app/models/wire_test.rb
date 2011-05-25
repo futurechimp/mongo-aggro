@@ -6,5 +6,15 @@ class WireTest < Test::Unit::TestCase
       @wire = Wire.new
       assert_not_nil @wire
     end
+    
+    should "validate presence of name" do
+      @wire = Wire.make
+      assert @wire.valid?
+      @wire.name = ""
+      assert !@wire.valid?
+      @wire.name = nil
+      assert !@wire.valid?
+    end
+    
   end
 end

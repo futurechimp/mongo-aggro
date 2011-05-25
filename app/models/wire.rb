@@ -10,6 +10,10 @@ class Wire
   # Associations
   #
   has_many :feeds
+  
+  # Validations
+  #
+  validates_presence_of :name
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>
