@@ -11,6 +11,10 @@ class HomeControllerTest < Test::Unit::TestCase
       should "work" do
         assert last_response.ok?
       end  
+      
+      should "have the 'labs' title in the layout" do
+        assert_match "Labs", last_response.body
+      end
     end
     
     context "with 1 FeedItem" do
