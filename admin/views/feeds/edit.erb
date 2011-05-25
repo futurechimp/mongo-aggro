@@ -1,0 +1,18 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to pat(:list), url(:feeds, :index) %></li>
+      <li><%= link_to pat(:new), url(:feeds, :new) %></li>
+      <li class="active"><%= link_to pat(:edit), url(:feeds, :edit, :id => @feed.id) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:edit) %> <% mt(:feed) %></h2>
+    <div class="inner">
+      <% form_for :feed, url(:feeds, :update, :id => @feed.id), :method => :put, :class => :form do |f| %>
+        <%= partial "feeds/form", :locals => { :f => f } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>

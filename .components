@@ -1,0 +1,8 @@
+--- 
+:admin_renderer: erb
+:test: shoulda
+:script: jquery
+:mock: rr
+:renderer: erb
+:stylesheet: none
+:orm: mongoid

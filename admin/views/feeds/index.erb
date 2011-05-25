@@ -1,0 +1,42 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat(:list), url(:feeds, :index) %></li>
+      <li><%= link_to pat(:new), url(:feeds, :new) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:feeds) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first"><%= mat(:feed, :created_at) %></th>
+          <th><%= mat(:feed, :updated_at) %></th>
+          <th><%= mat(:feed, :default_moderation_status) %></th>
+          <th><%= mat(:feed, :url) %></th>
+          <th><%= mat(:feed, :_id) %></th>
+          <th><%= mat(:feed, :_type) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @feeds.each do |feed| %>
+        <tr>
+          <td class="first"><%= feed.created_at %></td>
+          <td><%= feed.updated_at %></td>
+          <td><%= feed.default_moderation_status %></td>
+          <td><%= feed.url %></td>
+          <td><%= feed._id %></td>
+          <td><%= feed._type %></td>
+          <td class="last">
+            <%= button_to pat(:edit), url(:feeds, :edit, :id => feed.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:feeds, :destroy, :id => feed.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>
