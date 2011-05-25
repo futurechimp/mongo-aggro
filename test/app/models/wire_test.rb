@@ -15,6 +15,16 @@ class WireTest < Test::Unit::TestCase
       @wire.name = nil
       assert !@wire.valid?
     end
+
+    context "feed_items method" do
+      setup do
+        @wire = Factory.make_wire_with_feed_items
+      end
+
+      should "return an array of FeedItems for itself" #do
+      #   assert_equal(5, @wire.feed_items.length)
+      # end
+    end
     
   end
 end
