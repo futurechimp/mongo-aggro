@@ -41,6 +41,13 @@ class FeedItemTest < Test::Unit::TestCase
       assert !@feed_item.valid?
     end    
     
+    should "validate_presence_of :wire" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      assert @feed_item.valid?
+      @feed_item.wire = nil
+      assert !@feed_item.valid?
+    end    
+    
     should_eventually "validate format of url"
     should_eventually "validate presence of date"
     should_eventually "validate uniqueness of url"

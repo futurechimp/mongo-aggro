@@ -12,7 +12,7 @@ class FeedItem
 
   # Validations
   #
-  validates_presence_of :body, :url, :title, :feed
+  validates_presence_of :body, :url, :title, :feed, :wire
   
   # Associations
   #
