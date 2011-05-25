@@ -1,0 +1,11 @@
+/*!
+ * Aggro website v1.0.0
+*/
+
+/* --- General --- */
+
+/* --- #container --- */
+#container{width:100%;min-width:320px;max-width:480px;}
+
+/* --- #feed-items --- */
+#feed-items{background:#ff0000;}

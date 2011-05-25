@@ -1,0 +1,61 @@
+/*!
+ * Aggro website v1.0.0
+*/
+
+/* --- Reset everything --- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, ul, li, frameset, frame{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;text-decoration:none;list-style:none;letter-spacing:0;font-weight:normal;}
+
+/* --- General --- */
+body{background:#fff url(../images/bgs/body.gif) repeat-y 0 0;font-family:Helvetica, Arial;}
+a:hover{text-decoration:underline;}
+
+/* --- #container --- */
+#container{width:100%;min-width:320px;overflow:hidden;}
+
+/* --- #navigation --- */
+#navigation{width:160px;padding:20px;position:fixed;top:0;left:0;font-size:12px;text-transform:uppercase;}
+#navigation h1{color:#f04611;font-size:30px;text-align:center;}
+#navigation h2{color:#524944;}
+#navigation h1,
+#navigation h2{margin:0 0 5px;padding:0 0 5px;border-bottom:1px solid #d1d1d1;}
+
+/* --- #selection --- */
+#selection{width:160px;margin:0 0 5px;padding:0 0 5px;border-bottom:1px solid #fff;overflow:hidden;}
+#selection li{width:50%;float:left;}
+#selection li a{color:#00abb9;}
+#selection li .on{color:#f04611;}
+#selection #just-head{text-align:right;}
+
+/* --- .list --- */
+.list{padding:10px 0 0;}
+.list ul{}
+.list ul li{margin:0 0 5px;padding:0 0 5px;border-bottom:1px solid #fff;}
+.list ul li a{color:#00abb9;}
+.list ul li .on{color:#f04611;}
+
+/* --- #tags --- */
+#tags{padding:10px 0 0;}
+#tags ul{padding:2px 0 5px;overflow:hidden;}
+#tags ul li{padding:1px;float:left;}
+#tags ul li a{padding:3px 5px;display:block;background:#3f3f3f;color:#00abb9;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+
+/* --- #feed-items --- */
+#feed-items{margin:0 0 0 200px;overflow:hidden;}
+
+/* --- .feed-item --- */
+.feed-item{width:140px;padding:10px;float:left;}
+.feed-item p{padding:0 0 5px;}
+.feed-item .wire{font-size:11px;text-transform:uppercase;}
+.feed-item .wire a{color:#000;}
+.feed-item .image{}
+.feed-item .title{}
+.feed-item .title a{color:#00abb9;}
+.feed-item .date{font-size:11px;color:#666;text-transform:uppercase;}
+.feed-item .body{font-size:11px;color:#666;}
+
+/* --- .featured --- */
+.featured{width:300px;}
+
+/* --- Mobile Specific Styles --- */
+body.portrait{}
+body.landscape{}
