@@ -31,6 +31,10 @@ class HomeControllerTest < Test::Unit::TestCase
         assert_match "Labs", last_response.body
       end      
       
+      should "output the @feed_item title"# do
+#        assert_match @feed_item.title, last_response.body
+#      end
+      
     end    
   end
 end
