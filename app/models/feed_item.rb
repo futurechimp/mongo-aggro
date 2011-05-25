@@ -12,7 +12,7 @@ class FeedItem
 
   # Validations
   #
-  validates_presence_of :body, :url
+  validates_presence_of :body, :url, :title
   
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>
