@@ -19,6 +19,8 @@ Mongoaggro.controllers :home do
   # end
 
   get :index, :map => "/" do
+    @feed_items = FeedItem.order_by([:date_published, :asc])
+    erb :"home/index"
   end
 
 end

@@ -9,5 +9,6 @@ class HomeControllerTest < Test::Unit::TestCase
     should "work" do
       assert last_response.ok?
     end
+    
   end
 end
