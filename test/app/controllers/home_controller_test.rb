@@ -3,6 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../../test_config.rb')
 class HomeControllerTest < Test::Unit::TestCase
   context "HomeController" do
     
+    setup do
+      FeedItem.destroy_all
+    end    
+    
     context "with no FeedItems" do
       setup do
         get '/'
@@ -17,9 +21,9 @@ class HomeControllerTest < Test::Unit::TestCase
       end
     end
     
-    context "with 1 FeedItem" do
+    context "with FeedItems" do
       setup do
-        @feed_item = FeedItem.make
+        @feed_items = Factory.make_wire.feed_items
         get '/'
       end
       
@@ -29,11 +33,13 @@ class HomeControllerTest < Test::Unit::TestCase
       
       should "have the 'labs' title in the layout" do
         assert_match "Labs", last_response.body
-      end      
+      end  
       
-      should "output the @feed_item title"# do
-#        assert_match @feed_item.title, last_response.body
-#      end
+      should "output the @feed_item title" do
+        @feed_items.each do |feed_item|
+          assert_match(/#{feed_item.title}/, last_response.body)
+        end
+      end
       
     end    
   end

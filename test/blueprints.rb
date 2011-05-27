@@ -46,13 +46,21 @@ end
 module Factory
   class << self
 
-    # def make_wire_and_feed_with_feed_items
-    #       wire = Wire.make(:feed => Feed.make)
-    #       5.times do
-    #         wire.feed_items << FeedItem.make
-    #       end
-    #       wire.feed.feed_items << wire.feed_items
-    #       wire
-    #     end
+    def make_wire
+      wire = Wire.make
+      wire.save
+
+      wire.feeds << Feed.make
+      wire.feeds.first.save
+      
+      5.times do
+        feed_item = FeedItem.make
+        wire.feed_items << feed_item
+        wire.feeds.first.feed_items << feed_item
+        feed_item.save
+      end
+      wire
+    end
+    
   end
 end
