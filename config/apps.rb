@@ -12,18 +12,21 @@
 #   Padrino.mount("WebSite").host(/.*\.?example.org/)
 #   Padrino.mount("Foo").to("/foo").host("bar.example.org")
 #
-# Note 1: Mounted apps (by default) should be placed into the project root at '/app_name'.
-# Note 2: If you use the host matching remember to respect the order of the rules.
+# Note 1: Mounted apps (by default) should be placed into the project root at 
+# '/app_name'.
+# Note 2: If you use the host matching remember to respect the order of the 
+# rules.
 #
-# By default, this file mounts the primary app which was generated with this project.
+# By default, this file mounts the primary app which was generated with this 
+# project.
 # However, the mounted app can be modified as needed:
 #
 #   Padrino.mount("AppName", :app_file => "path/to/file", :app_class => "BlogApp").to('/')
 #
 
 ##
-# Setup global project settings for your apps. These settings are inherited by every subapp. You can
-# override these settings in the subapps as needed.
+# Setup global project settings for your apps. These settings are inherited by
+# every subapp. You can override these settings in the subapps as needed.
 #
 Padrino.configure_apps do
   # enable :sessions
