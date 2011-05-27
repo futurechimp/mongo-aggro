@@ -7,6 +7,8 @@ source :rubygems
 gem 'rake'
 gem 'rack-flash'
 gem 'httparty'
+gem 'sanitize'
+
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"
