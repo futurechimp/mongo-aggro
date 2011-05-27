@@ -11,6 +11,11 @@ end
 
 Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
 
+CarrierWave.configure do |config|
+  config.grid_fs_database = database_name
+  config.grid_fs_host = host
+end
+
 # You can also configure Mongoid this way
 # Mongoid.configure do |config|
 #   name = @settings["database"]
@@ -23,3 +28,4 @@ Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
 # end
 #
 # More installation and setup notes are on http://mongoid.org/docs/
+

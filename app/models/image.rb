@@ -1,25 +1,17 @@
-class FeedItem
+class Image
   include Mongoid::Document
   include Mongoid::Timestamps # adds created_at and updated_at fields
 
   # Fields
   #
   # field <name>, :type => <type>, :default => <value>
-  field :body, :type => String
-  field :url, :type => String
-  field :title, :type => String
-  field :date_published, :type => DateTime
-
-  # Validations
   #
-  validates_presence_of :body, :url, :title, :feed, :wire
+  mount_uploader :file, ImageUploader
   
   # Associations
   #
-  belongs_to :feed
-  belongs_to :wire
-  embeds_one :image
-  
+  embedded_in :feed_item
+
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>
 

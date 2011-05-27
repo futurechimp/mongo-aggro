@@ -3,6 +3,23 @@ class Mongoaggro < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
+  
+  configure :test do
+    
+    # Disable CarrierWave file uploads to speed up tests.
+    #
+    # It's possible to re-enable uploads like so, maybe in the setup 
+    # block for a test: 
+    #
+    # MyUploader.enable_processing = true
+    # @uploader = MyUploader.new(@user, :avatar)
+    # @uploader.store!(File.open(path_to_file))
+    #
+    CarrierWave.configure do |config|
+      config.storage = :file
+      config.enable_processing = false
+    end
+  end
 
   ##
   # Caching support

@@ -8,7 +8,7 @@ gem 'rake'
 gem 'rack-flash'
 gem 'httparty'
 gem 'sanitize'
-
+gem 'carrierwave'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"
