@@ -21,11 +21,12 @@ class ImageTest < Test::Unit::TestCase
         file = File.new PADRINO_ROOT + "/test/fixtures/omegaman.jpg"
         @image.file = file
         
-        @feed_item.save!
+        @feed_item.image.save!
       end
       
       should "work" do
-        assert_equal "omegaman.jpg", @image.file.filename
+        @feed_item.reload
+        assert_equal "omegaman.jpg", @feed_item.image.file_filename
       end
       
     end
