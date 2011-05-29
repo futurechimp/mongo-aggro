@@ -1,13 +1,17 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   storage :grid_fs
-
+  
   ##
   # Image manipulator library:
   #
   # include CarrierWave::RMagick
   # include CarrierWave::ImageScience
   # include CarrierWave::MiniMagick
+
+  def store_dir
+    "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
 
   ##
   # Directory where uploaded temp files will be stored (default is [root]/tmp)
