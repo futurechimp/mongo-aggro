@@ -26,6 +26,21 @@ class FeedTest < Test::Unit::TestCase
       assert !@feed.valid?
     end
     
+    context "image upload" do
+      setup do
+        @feed = Feed.make
+        
+        file = File.new PADRINO_ROOT + "/test/fixtures/omegaman.jpg"        
+        @feed.image = file
+        @feed.save!
+      end
+      
+      should "work" do
+        @feed.reload
+        assert_equal "omegaman.jpg", @feed.image_filename
+      end
+    end
+    
     # context "after create" do
     #   setup do
     #     @feed = Factory.make_stubbed_feed

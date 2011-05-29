@@ -7,6 +7,10 @@ class Feed
   # field <name>, :type => <type>, :default => <value>
   field :url, :type => String
   field :default_moderation_status, :type => String
+  
+  # The CarrierWave uploader
+  #
+  mount_uploader :image, ImageUploader
 
   # Validations
   #
