@@ -26,6 +26,7 @@ end
 FeedItem.blueprint do
   body {"This is the body"}
   date_published { DateTime.now }
+  # image { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }  
   title
   url
 end
@@ -33,10 +34,6 @@ end
 FeedItem.blueprint(:with_feed_and_wire) do
   wire { Wire.make }
   feed { Feed.make }
-end
-
-Image.blueprint do
-  file { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }
 end
 
 Wire.blueprint do

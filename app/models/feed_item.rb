@@ -10,6 +10,11 @@ class FeedItem
   field :title, :type => String
   field :date_published, :type => DateTime
 
+  # The CarrierWave uploader
+  #
+  mount_uploader :image, ImageUploader
+
+
   # Validations
   #
   validates_presence_of :body, :url, :title, :feed, :wire
@@ -18,7 +23,6 @@ class FeedItem
   #
   belongs_to :feed
   belongs_to :wire
-  embeds_one :image
   
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>

@@ -26,5 +26,29 @@ class FeedTest < Test::Unit::TestCase
       assert !@feed.valid?
     end
     
+    # context "after create" do
+    #   setup do
+    #     @feed = Factory.make_stubbed_feed
+    #   end
+    # 
+    #   should "make a POST request to the octopus" do
+    #     assert_requested :post, subscription_url, successful_subscription_request_body(@feed)
+    #   end
+    # end
+    # 
+    # context "updating with fresh feed data" do
+    #   context "for a feed with no items" do
+    #     setup do
+    #       @feed = Factory.make_stubbed_feed
+    #       @feed.update_feed_items(good_feed_content)
+    #     end
+    # 
+    #     should "add the incoming feed content to the feed" do
+    #       assert_equal(FeedNormalizer::FeedNormalizer.parse(
+    #         good_feed_content).items.length, @feed.feed_items.length)
+    #     end
+    #   end
+    # end    
+    
   end
 end
