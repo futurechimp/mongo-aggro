@@ -3,8 +3,8 @@
 <% size = classname == "featured" ? "medium" : "small" %>
 <div class="feed-item <%= classname %>">
   <p class="image">
-    <%# item_image = feed_item.image(size) %>
-    <%= link_to(image_tag("foo.jpg", { :alt => "" }), feed_item.url) %>
+    <% item_image = feed_item.image.file.url %>
+    <%= link_to(image_tag(item_image, { :alt => "foo!" }), feed_item.url) %>
   </p>
   <p class="wire"> <%# link_to(feed_item.wire.name, "#") %> </p>
   <p class="title"><%= link_to(feed_item.title, feed_item.url) %> </p>
