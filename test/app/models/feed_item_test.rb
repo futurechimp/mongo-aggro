@@ -52,21 +52,20 @@ class FeedItemTest < Test::Unit::TestCase
     should_eventually "validate presence of date"
     should_eventually "validate uniqueness of url"
     
-    # context "image upload" do
-    #   setup do
-    #     @feed_item = FeedItem.make(:with_feed_and_wire)
-    #     
-    #     file = File.new PADRINO_ROOT + "/test/fixtures/omegaman.jpg"        
-    #     @feed_item.image = file
-    #     @feed_item.save!
-    #   end
-    #   
-    #   should "work" do
-    #     @feed_item.reload
-    #     assert_equal "omegaman.jpg", @feed_item.image_filename
-    #   end
-    #   
-    # end
+    context "image upload" do
+      setup do
+        @feed_item = FeedItem.make(:with_feed_and_wire)
+        
+        file = File.new PADRINO_ROOT + "/test/fixtures/omegaman.jpg"        
+        @feed_item.image = file
+        @feed_item.save!
+      end
+      
+      should "work" do
+        @feed_item.reload
+        assert_equal "omegaman.jpg", @feed_item.image_filename
+      end
+    end
     
     context "testing images" do
       context "with an image" do
