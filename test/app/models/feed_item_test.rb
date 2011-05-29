@@ -52,5 +52,22 @@ class FeedItemTest < Test::Unit::TestCase
     should_eventually "validate presence of date"
     should_eventually "validate uniqueness of url"
     
+    context "testing images" do
+      context "with an image" do
+        setup do
+          @feed_item = FeedItem.make(:with_feed_and_wire)
+          @feed_item.image = Image.new
+          file = File.new PADRINO_ROOT + "/test/fixtures/omegaman.jpg"
+          @feed_item.image.file = file
+          @feed_item.image.save!
+          @feed_item.save!
+        end
+
+        should "return the image file path" do
+          assert_equal("/grid/image/file/#{@feed_item.image.id}/omegaman.jpg", @feed_item.image.file.url)
+        end
+      end  
+    end
+    
   end
 end
