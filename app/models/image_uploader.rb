@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   # include CarrierWave::RMagick
   # include CarrierWave::ImageScience
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   def store_dir
     "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -30,8 +30,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   ##
   # Process files as they are uploaded.
   #
-  # process :resize_to_fit => [740, 580]
+  process :resize_to_fit => [300, 300]
 
+  version :small do
+    process :resize_to_fit => [140, 140]
+  end
+  
   ##
   # Create different versions of your uploaded files
   #
