@@ -25,8 +25,8 @@ class ServeGridfsImage
       Mongo::GridFileSystem.new(Mongoid.database).open(key, 'r') do |file|
         [200, { 'Content-Type' => file.content_type }, [file.read]]
       end
-    rescue
-      [404, { 'Content-Type' => 'text/plain' }, ['File not found.']]
+    rescue => ex
+      [404, { 'Content-Type' => 'text/plain' }, ['File not found. ' + ex]]
     end
   end
 end
