@@ -16,6 +16,7 @@ gem 'erubis', "~> 2.7.0"
 gem 'SystemTimer', :require => "system_timer"
 gem 'mongoid'
 gem 'bson_ext', :require => "mongo"
+gem 'mini_magick'
 
 # Test requirements
 gem 'faker', :group => "test"
@@ -25,7 +26,6 @@ gem 'rr', :group => "test"
 gem 'shoulda', :group => "test"
 gem 'shoulda-activemodel', :group => "test"
 gem 'ruby-debug', :group => "test"
-
 
 # Padrino
 gem 'padrino', "0.9.29"
