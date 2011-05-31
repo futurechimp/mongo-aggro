@@ -20,7 +20,7 @@ Feed.blueprint do
   url
   default_moderation_status { "published" }
   wire { Wire.make }
-  #image { "foo.jpg" }
+  image { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }  
 end
 
 FeedItem.blueprint do
@@ -47,12 +47,29 @@ end
 module Factory
   class << self
 
+    include TestHelper::StubbedOctopusCalls
+    include WebMock
+
+    # Returns a Feed object with a pseudo-random uuid as its id.  We use the
+    # bullshit_uuid because Machinist doesn't set an id on the new feed object
+    # in feed = Feed.make, and we need the feed.id to stub successful net
+    # resource creation.
+    #
+    def make_stubbed_feed
+      feed = Feed.make
+      stub_successful_net_resource_creation(feed)
+      feed.save!
+      feed
+    end
+      
     def make_wire
       wire = Wire.make
       wire.save
 
-      wire.feeds << Feed.make
-      wire.feeds.first.save
+      feed = Feed.make
+      stub_successful_net_resource_creation(feed)
+      feed.save
+      wire.feeds << feed
       
       5.times do
         feed_item = FeedItem.make

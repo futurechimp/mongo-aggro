@@ -30,3 +30,5 @@ Padrino.after_load do
 end
 
 Padrino.load!
+
+SERVER_URL = "http://localhost:3000"

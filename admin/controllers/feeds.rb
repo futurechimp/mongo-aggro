@@ -44,4 +44,10 @@ Admin.controllers :feeds do
     end
     redirect url(:feeds, :index)
   end
+  
+  post :notify, :with => :id do
+    @feed = Feed.find(params[:id])
+    @feed.update_feed_items(params[:data])
+    "success"
+  end  
 end

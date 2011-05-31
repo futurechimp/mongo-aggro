@@ -7,10 +7,14 @@ class Octopus
   # Adds a resource to the Octopus.
   #
   def self.create_resource(feed)
-    options = {:body => {
-      :net_resource => { :url => feed.url },
-      :subscription => {:url => "#{::SERVER_URL}/admin/feeds/notify/#{feed.id}"}
-    }}
+    options = {
+      :body => {
+        :net_resource => { :url => feed.url },
+        :subscription => {
+          :url => "#{::SERVER_URL}/admin/feeds/notify/#{feed.id}"
+        }
+      }
+    }
     post( '/create', options)
   end
 
