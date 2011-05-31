@@ -24,14 +24,14 @@ class Admin < Padrino::Application
   enable  :sessions
   disable :store_location
 
-  access_control.roles_for :any do |role|
-    role.protect "/"
-    role.allow "/sessions"
-  end
-
-  access_control.roles_for :admin do |role|
-    role.project_module :wires, "/wires"
-    role.project_module :feeds, "/feeds"
-    role.project_module :accounts, "/accounts"
-  end
+  # access_control.roles_for :any do |role|
+  #   role.protect "/"
+  #   role.allow "/sessions"
+  # end
+  # 
+  # access_control.roles_for :admin do |role|
+  #   role.project_module :wires, "/wires"
+  #   role.project_module :feeds, "/feeds"
+  #   role.project_module :accounts, "/accounts"
+  # end
 end
