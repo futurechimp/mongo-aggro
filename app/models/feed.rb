@@ -48,8 +48,7 @@ class Feed
         raw_items.nil? || raw_items.empty?
       feed.clean!
       feed.entries.each_with_index do |entry, index|
-        # feed_item = FeedItem.first(conditions: { url: "Syd" })
-        # feed_item = FeedItem.where(url: entry.url)
+        feed_item = FeedItem.first(:conditions => { url => entry.url })
         feed_item = FeedItem.new unless feed_item
         feed_item.feed_id = self.id
         feed_item.title = entry.title
@@ -61,14 +60,6 @@ class Feed
         # feed_item.images_parsed = false
         self.feed_items << feed_item
       end
-#       begin
-#         items.each do |item|
-#           item.save!
-#         end
-# #        FeedItem.database.bulk_save(items)
-#       rescue Exception => ex
-#         puts ex.message
-#       end
     end
   end
   
