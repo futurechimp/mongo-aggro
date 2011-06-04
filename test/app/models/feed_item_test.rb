@@ -80,7 +80,15 @@ class FeedItemTest < Test::Unit::TestCase
       assert !@feed_item.valid?
     end
     
-    should_eventually "validate format of url"
+    should "validate format of url" do
+      @feed_item = Feed.make 
+      assert @feed_item.valid?
+      @feed_item.url = "blah"
+      assert !@feed_item.valid?
+      @feed_item.url = "http://foo.com"
+      assert @feed_item.valid?
+    end
+    
     should_eventually "validate uniqueness of url"
     
     context "image upload" do
