@@ -55,6 +55,24 @@ class FeedItemTest < Test::Unit::TestCase
       assert !@feed_item.valid?      
     end
     
+    should "pass validation when moderation_status is 'published'" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      @feed_item.moderation_status = "published"
+      assert @feed_item.valid?
+    end
+    
+    should "pass validation when moderation_status is 'featured'" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      @feed_item.moderation_status = "featured"
+      assert @feed_item.valid?
+    end
+    
+    should "fail validation when moderation_status is 'foo'" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      @feed_item.moderation_status = "foo"
+      assert !@feed_item.valid?
+    end
+    
     should_eventually "validate format of url"
     should_eventually "validate presence of date"
     should_eventually "validate uniqueness of url"
