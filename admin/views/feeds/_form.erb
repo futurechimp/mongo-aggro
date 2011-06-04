@@ -24,8 +24,8 @@
 <% end %>
 
 <div class="group">
-  <%= label_tag :image %><%= f.error_message_on :image %>
-  <%= file_field_tag :image %>
+  <%= f.label :image %><%= f.error_message_on :image %>
+  <%= f.file_field :image %>
   <span class="description">Please upload a default image</span>
 </div>
 
