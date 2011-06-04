@@ -1,6 +1,10 @@
 class FeedItem
   include Mongoid::Document
   include Mongoid::Timestamps # adds created_at and updated_at fields
+  
+  # the ImageFinder module finds the largest image for us
+  #
+  include ImageFinder
 
   # Fields
   #
@@ -15,6 +19,9 @@ class FeedItem
   #
   mount_uploader :image, ImageUploader
 
+  # Callbacks
+  #
+  before_create :retrieve_image
 
   # Validations
   #
@@ -39,9 +46,15 @@ class FeedItem
     end
   end
   
-  # You can define indexes on documents using the index macro:
+  # Set an index on :date_published for faster ordered retrieval.
+  #
   index :date_published
 
-  # You can create a composite key in mongoid to replace the default id using the key macro:
-  # key :field <, :another_field, :one_more ....>
+  private
+  
+  def retrieve_image
+    largest = largest_image(self.body)
+    self.remote_image_url = largest if largest
+  end
+
 end
