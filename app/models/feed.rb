@@ -48,8 +48,8 @@ class Feed
       raw_items = Hpricot(data).search("//entry") if 
         raw_items.nil? || raw_items.empty?
       feed.clean!
-      feed.entries.each_with_index do |entry, index|
-        feed_item = FeedItem.first(:conditions => { url => entry.url })
+      feed.entries.each do |entry|
+        feed_item = FeedItem.first(:conditions => { :url => entry.url })
         feed_item = FeedItem.new unless feed_item
         feed_item.feed_id = self.id
         feed_item.title = entry.title
