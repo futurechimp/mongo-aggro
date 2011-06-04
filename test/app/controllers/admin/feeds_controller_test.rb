@@ -23,7 +23,7 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
 
     context "on GET to new" do
       setup do
-        @wire = Factory.make_wire
+        @wire = Wire.make
         get '/admin/feeds/new'
       end
 
