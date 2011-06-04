@@ -57,8 +57,6 @@ class Feed
         feed_item.body = Sanitize.clean(entry.content)
         feed_item.date_published = entry.date_published
         feed_item.wire_id = self.wire_id
-        # feed_item.image_urls = parse(raw_items[index].to_s) if raw_items
-        # feed_item.images_parsed = false
         self.feed_items << feed_item
       end
     end
