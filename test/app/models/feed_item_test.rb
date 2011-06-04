@@ -81,7 +81,6 @@ class FeedItemTest < Test::Unit::TestCase
     end
     
     should_eventually "validate format of url"
-    should_eventually "validate presence of date"
     should_eventually "validate uniqueness of url"
     
     context "image upload" do
