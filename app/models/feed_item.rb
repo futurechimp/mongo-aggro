@@ -26,6 +26,7 @@ class FeedItem
   # Validations
   #
   validates_presence_of :body, :url, :title, :feed, :wire, :moderation_status
+  validates_presence_of :date_published
   validates_inclusion_of :moderation_status, :in => %w( published featured )
   
   # Associations

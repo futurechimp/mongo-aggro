@@ -16,14 +16,26 @@ class FeedItemTest < Test::Unit::TestCase
       assert !@feed_item.valid?
     end
     
-    should "validate_presence_of :url" do
+    should "validate_presence_of :date_published" do
       @feed_item = FeedItem.make(:with_feed_and_wire)
       assert @feed_item.valid?
-      @feed_item.url = ""
-      assert !@feed_item.valid?
-      @feed_item.url = nil
+      @feed_item.date_published = nil
+      assert !@feed_item.valid?      
+    end    
+
+    should "validate_presence_of :feed" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      assert @feed_item.valid?
+      @feed_item.feed = nil
       assert !@feed_item.valid?
     end
+    
+    should "validate_presence_of :moderation_status" do
+      @feed_item = FeedItem.make(:with_feed_and_wire)
+      assert @feed_item.valid?
+      @feed_item.moderation_status = nil
+      assert !@feed_item.valid?      
+    end    
     
     should "validate_presence_of :title" do
       @feed_item = FeedItem.make(:with_feed_and_wire)
@@ -34,25 +46,20 @@ class FeedItemTest < Test::Unit::TestCase
       assert !@feed_item.valid?
     end
     
-    should "validate_presence_of :feed" do
+    should "validate_presence_of :url" do
       @feed_item = FeedItem.make(:with_feed_and_wire)
       assert @feed_item.valid?
-      @feed_item.feed = nil
+      @feed_item.url = ""
       assert !@feed_item.valid?
-    end    
+      @feed_item.url = nil
+      assert !@feed_item.valid?
+    end
     
     should "validate_presence_of :wire" do
       @feed_item = FeedItem.make(:with_feed_and_wire)
       assert @feed_item.valid?
       @feed_item.wire = nil
       assert !@feed_item.valid?
-    end
-    
-    should "validate_presence_of :moderation_status" do
-      @feed_item = FeedItem.make(:with_feed_and_wire)
-      assert @feed_item.valid?
-      @feed_item.moderation_status = nil
-      assert !@feed_item.valid?      
     end
     
     should "pass validation when moderation_status is 'published'" do
