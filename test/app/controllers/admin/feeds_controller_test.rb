@@ -58,31 +58,34 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
       
     end
 
-    # context "on POST to notify" do
-    #   context "with good params" do
-    #     context "on an empty feed" do
-    #       setup do
-    #         @feed = Factory.make_stubbed_feed
-    #         @original_feed_item_count = FeedItem.count
-    #         @feed_length = FeedNormalizer::FeedNormalizer.parse(
-    #                                     good_feed_content).entries.length
-    #         post "/admin/feeds/notify/#{@feed.to_param}", 
-    #                                               :data => good_feed_content
-    #       end
-    # 
-    #       should "work" do
-    #         assert last_response.ok?
-    #       end
-    # 
-    #       should "respond with success message" do
-    #         assert_equal(last_response.body, "success")
-    #       end
-    # 
-    #       should_eventually "add as many feed_items as are in the feed" do
-    #         assert_equal(@original_feed_item_count + @feed_length, FeedItem.count)
-    #       end
-    #     end
-    #   end
+    context "on POST to notify" do
+      context "with good params" do
+        context "on an empty feed" do
+          setup do
+            @feed = Factory.make_stubbed_feed
+            @original_feed_item_count = FeedItem.count
+            @feed_length = FeedNormalizer::FeedNormalizer.parse(
+                                        good_feed_content).entries.length
+            post "/admin/feeds/notify/#{@feed.to_param}", 
+                                                  :data => good_feed_content
+          end
+    
+          should "work" do
+            assert last_response.ok?
+          end
+    
+          should "respond with success message" do
+            assert_equal(last_response.body, "success")
+          end
+  
+          should_eventually "add as many feed_items as are in the feed" do
+            assert_equal(
+              @original_feed_item_count + @feed_length, FeedItem.count
+            )
+          end
+        end
+      end
+    end
 
     #   context "with an existing feed but bad feed body content" do
     # 
