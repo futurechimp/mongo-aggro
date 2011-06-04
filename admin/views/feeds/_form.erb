@@ -1,5 +1,6 @@
 <div class="group">
-  <%= f.label :default_moderation_status %><%= f.error_message_on :default_moderation_status %>
+  <%= f.label :default_moderation_status %>
+  <%= f.error_message_on :default_moderation_status %>
   <%= f.text_field :default_moderation_status, :class => :text_field %>
   <span class="description">Ex: a simple text</span>
 </div>
@@ -8,15 +9,24 @@
   <%= f.text_field :url, :class => :text_field %>
   <span class="description">Ex: a simple text</span>
 </div>
+
 <div class="group">
-  <%= f.label :_id %><%= f.error_message_on :_id %>
-  <%= f.text_field :_id, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <%= f.label :wire %><%= f.error_message_on :wire %>
+  <%= f.select :wire_id, :collection => @wires, :fields => [:name, :id]  %>
+  <span class="description">Please choose a wire.</span>
 </div>
+
+<% if @feed and @feed.image_url %>
+  <div class="group">
+    <strong>Current default image:</strong> <br />
+    <%= image_tag @feed.image_url("small") if @feed.image_url %>
+  </div>
+<% end %>
+
 <div class="group">
-  <%= f.label :_type %><%= f.error_message_on :_type %>
-  <%= f.text_field :_type, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <%= label_tag :image %><%= f.error_message_on :image %>
+  <%= file_field_tag :image %>
+  <span class="description">Please upload a default image</span>
 </div>
 
 <div class="group navform wat-cf">

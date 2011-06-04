@@ -23,12 +23,17 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
 
     context "on GET to new" do
       setup do
+        @wire = Factory.make_wire
         get '/admin/feeds/new'
       end
 
       should "work" do
         assert last_response.ok?
         assert_match /New/, last_response.body
+      end
+      
+      should "insert the @wire name into the body" do
+        assert last_response.body.include?(@wire.name)
       end
     end
 

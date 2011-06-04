@@ -8,8 +8,11 @@
   <div class="content">
     <h2 class="title"><%= pat(:new) %> <% mt(:feed) %></h2>
     <div class="inner">
-      <% form_for :feed, url(:feeds, :create), :class => :form do |f| %>
+      <% form_for :feed, url(:feeds, :create), :class => :form, 
+            :multipart => :true do |f| %>
+            
         <%= partial "feeds/form", :locals => { :f => f } %>
+        
       <% end %>
     </div>
   </div>

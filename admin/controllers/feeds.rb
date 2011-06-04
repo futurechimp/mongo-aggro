@@ -6,6 +6,7 @@ Admin.controllers :feeds do
   end
 
   get :new do
+    @wires = Wire.all
     @feed = Feed.new
     render 'feeds/new'
   end
