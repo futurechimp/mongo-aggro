@@ -21,7 +21,7 @@ class FeedItem
 
   # Callbacks
   #
-  before_create :retrieve_image
+  # before_create :retrieve_image
 
   # Validations
   #
