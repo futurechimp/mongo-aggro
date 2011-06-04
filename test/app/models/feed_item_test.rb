@@ -88,9 +88,7 @@ class FeedItemTest < Test::Unit::TestCase
       @feed_item.url = "http://foo.com"
       assert @feed_item.valid?
     end
-    
-    should_eventually "validate uniqueness of url"
-    
+        
     context "image upload" do
       setup do
         @feed_item = FeedItem.make(:with_feed_and_wire)
