@@ -36,6 +36,7 @@ class FeedItem
   # @return [String] the URL of the item's image file, properly sized to 
   # match its moderation_status. If this FeedItem has no image, the
   # parent Feed's image gets returned instead.
+  #
   def item_image
     if image?
       return image.url if self.moderation_status == "featured"
@@ -52,6 +53,9 @@ class FeedItem
 
   private
   
+  # Retrieves the largest remote image from the web (using the ImageFinder
+  # module) and inserts it into the database.
+  #
   def retrieve_image
     largest = largest_image(self.body)
     self.remote_image_url = largest if largest
