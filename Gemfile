@@ -20,6 +20,7 @@ gem 'mongoid'
 gem 'bson_ext', :require => "mongo"
 gem 'mini_magick'
 gem 'feed-normalizer'
+gem 'ruby-debug', :group => ["development", "test"]
 
 # Test requirements
 gem 'faker', :group => "test"
@@ -28,7 +29,6 @@ gem 'rack-test', :require => "rack/test", :group => "test"
 gem 'rr', :group => "test"
 gem 'shoulda', :group => "test"
 gem 'shoulda-activemodel', :group => "test"
-gem 'ruby-debug', :group => "test"
 gem 'webmock', :group => "test"
 
 # Padrino
