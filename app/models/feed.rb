@@ -16,6 +16,7 @@ class Feed
   #
   validates_presence_of :url, :wire
   validates_presence_of :image
+  validates_format_of :url, :with => URI.regexp
 
   # Associations
   #

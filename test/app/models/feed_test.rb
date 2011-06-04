@@ -8,6 +8,13 @@ class FeedTest < Test::Unit::TestCase
       assert_not_nil @feed
     end    
     
+    should "validate presence of image" do
+      @feed = Feed.make
+      assert @feed.valid?
+      @feed.remove_image!
+      assert !@feed.valid?   
+    end
+    
     should "validate presence of url" do
       @feed = Feed.make
       assert @feed.valid?
@@ -16,23 +23,22 @@ class FeedTest < Test::Unit::TestCase
       @feed.url = nil
       assert !@feed.valid?
     end
-    
-    should "validate format of url"    
-    
+        
     should "validate presence of wire" do
       @feed = Feed.make
       assert @feed.valid?
       @feed.wire = nil
       assert !@feed.valid?
-    end
+    end    
     
-    
-    should "validate presence of image" do
-      @feed = Feed.make
+    should "validate format of url" do
+      @feed = Feed.make 
       assert @feed.valid?
-      @feed.remove_image!
-      assert !@feed.valid?   
-    end
+      @feed.url = "blah"
+      assert !@feed.valid?
+      @feed.url = "http://foo.com"
+      assert @feed.valid?
+    end    
     
     context "image upload" do
       setup do
