@@ -125,17 +125,23 @@ class FeedItemTest < Test::Unit::TestCase
         end        
       end
       
-      context "with no image" do
+      context "with no image attached" do
         setup do
+          stub_request(:any, "http://admin:admin@octopus:2001/create")
           @feed_item = FeedItem.make(:with_feed_and_wire)
+          @feed_item.feed.image = File.new(
+                                  PADRINO_ROOT + "/test/fixtures/omegaman.jpg")
+          @feed_item.feed.save
         end
         
-        should "return a default image" do
-          assert_equal(
-            "/images/fallback/default.png", 
-            @feed_item.image.url
-          )
-        end
+        context "with moderation_status 'featured'" do
+          should "return the parent Feed image" do
+            assert_equal(
+              @feed_item.feed.image.small.url, 
+              @feed_item.item_image
+            )
+          end  
+        end        
       end
     end
     

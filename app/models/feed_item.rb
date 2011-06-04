@@ -27,10 +27,16 @@ class FeedItem
   belongs_to :wire
   
   # @return [String] the URL of the item's image file, properly sized to 
-  # match its moderation_status.
+  # match its moderation_status. If this FeedItem has no image, the
+  # parent Feed's image gets returned instead.
   def item_image
-    return image.url if self.moderation_status == "featured"
-    return image.small.url if self.moderation_status == "published"
+    if image?
+      return image.url if self.moderation_status == "featured"
+      return image.small.url if self.moderation_status == "published"
+    else
+      return feed.image.url if self.moderation_status == "featured"
+      return feed.image.small.url if self.moderation_status == "published"       
+    end
   end
   
   # You can define indexes on documents using the index macro:
