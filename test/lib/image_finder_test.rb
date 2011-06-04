@@ -52,8 +52,18 @@ class ImageFinderTest < Test::Unit::TestCase
         assert_nil(@model_object.largest_image(@data))
       end
     end    
-  end
-  
+
+    context "using sample data containing image URLs which timeout" do
+      setup do
+        @data = "blah blah blah http://somenonexistentsite.com/foo.jpg"
+      end
+
+      should "return nil" do
+        stub_request(:any, "http://somenonexistentsite.com/foo.jpg").to_timeout
+        assert_nil(@model_object.largest_image(@data))
+      end
+    end
+  end  
   
   def dummy_data
     %Q(blah blah foo http://www.somefakesite.com/huge.jpg blah
