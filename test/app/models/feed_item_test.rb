@@ -100,13 +100,29 @@ class FeedItemTest < Test::Unit::TestCase
           @feed_item.image = file
           @feed_item.save!
         end
-
-        should "return the image file path" do
-          assert_equal(
-            "/grid/feed_item/image/#{@feed_item.to_param}/omegaman.jpg",
-            @feed_item.image.url
-          )
+        
+        context "with moderation_status 'published'" do
+          should "return the small image file path" do
+            assert_equal(
+              "/grid/feed_item/image/#{@feed_item.to_param}/small_omegaman.jpg",
+              @feed_item.item_image
+            )
+          end          
         end
+        
+        context "with moderation_status 'featured'" do
+          setup do
+            @feed_item.moderation_status = "featured"
+            @feed_item.save
+          end
+          
+          should "return the image file path" do
+            assert_equal(
+              "/grid/feed_item/image/#{@feed_item.to_param}/omegaman.jpg",
+              @feed_item.item_image
+            )
+          end
+        end        
       end
       
       context "with no image" do

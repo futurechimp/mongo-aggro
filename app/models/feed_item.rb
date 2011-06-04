@@ -26,8 +26,15 @@ class FeedItem
   belongs_to :feed
   belongs_to :wire
   
+  # @return [String] the URL of the item's image file, properly sized to 
+  # match its moderation_status.
+  def item_image
+    return image.url if self.moderation_status == "featured"
+    return image.small.url if self.moderation_status == "published"
+  end
+  
   # You can define indexes on documents using the index macro:
-  # index :field <, :unique => true>
+  # index :date_published
 
   # You can create a composite key in mongoid to replace the default id using the key macro:
   # key :field <, :another_field, :one_more ....>
