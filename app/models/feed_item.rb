@@ -9,6 +9,7 @@ class FeedItem
   field :url, :type => String
   field :title, :type => String
   field :date_published, :type => DateTime
+  field :moderation_status, :type => String
 
   # The CarrierWave uploader
   #
@@ -17,7 +18,7 @@ class FeedItem
 
   # Validations
   #
-  validates_presence_of :body, :url, :title, :feed, :wire
+  validates_presence_of :body, :url, :title, :feed, :wire, :moderation_status
   
   # Associations
   #
