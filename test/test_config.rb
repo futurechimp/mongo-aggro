@@ -1,8 +1,12 @@
 PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
-require File.expand_path(File.dirname(__FILE__) + "/support/stubbed_octopus_calls")
-require File.expand_path(File.dirname(__FILE__) + "/support/stubbed_web_requests")
+require File.expand_path(File.dirname(__FILE__) + "/lib/image_finder_test.rb")
+require File.expand_path(File.dirname(__FILE__) + 
+  "/support/stubbed_octopus_calls")
+require File.expand_path(File.dirname(__FILE__) +
+  "/support/stubbed_web_requests")
 require File.expand_path(File.dirname(__FILE__) + "/blueprints.rb")
+
 
 # require 'webmock'
 
@@ -22,4 +26,18 @@ class Test::Unit::TestCase
     Padrino.application
     # Mongoaggro.tap { |app|  }
   end
+  
+  def large_feed_item_image
+    File.expand_path(
+      File.dirname(__FILE__) + "/fixtures/omegaman.jpg"
+    )
+  end
+
+  def small_feed_item_image
+    File.expand_path(
+      File.dirname(__FILE__) + "/fixtures/tiny.png"
+    )
+  end
+
+    
 end

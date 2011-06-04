@@ -1,15 +1,30 @@
 module ImageFinder
 
+  def largest_image(data)
+    image_urls = parse(data)
+    biggest = ""
+    maxsize = 0
+    image_urls.each do |url|
+      dimensions = FastImage.size(url)
+      area = dimensions[0] * dimensions[1]
+      if area > maxsize
+        biggest = url
+        maxsize = area
+      end
+    end
+    biggest
+  end
+    
+  private
+
   # Parses incoming feed data, returning an array of absolute paths to the
   # JPG, PNG, and GIF images contained in the feed.
   #
-  # @param [String] data the incoming feed data, which should be a string
-  # rather than some kind of FeedNormalizer object.
+  # @param [String] data the incoming feed text.
   #
   # @return [Array] an array of image URLs.
   #
   def parse(data)
-    image_urls = []
     uris = URI.extract(data)
     _image_urls = uris.select{|u|
       begin
@@ -30,4 +45,3 @@ module ImageFinder
   end
 
 end
-
