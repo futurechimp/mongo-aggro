@@ -9,6 +9,7 @@ gem 'rack-flash'
 gem 'httparty'
 gem 'sanitize'
 gem 'carrierwave'
+gem 'fastimage'
 
 # Component requirements
 gem 'json'

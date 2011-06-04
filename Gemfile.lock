@@ -20,6 +20,7 @@ GEM
     erubis (2.7.0)
     faker (0.9.5)
       i18n (~> 0.4)
+    fastimage (1.2.8)
     feed-normalizer (1.5.2)
       hpricot (>= 0.6)
       simple-rss (>= 1.1)
@@ -123,6 +124,7 @@ DEPENDENCIES
   carrierwave
   erubis (~> 2.7.0)
   faker
+  fastimage
   feed-normalizer
   httparty
   json
