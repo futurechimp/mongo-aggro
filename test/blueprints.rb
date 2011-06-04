@@ -27,7 +27,6 @@ FeedItem.blueprint do
   body {"This is the body"}
   date_published { DateTime.now }
   moderation_status { "published" }
-  # image { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }  
   title
   url
 end
