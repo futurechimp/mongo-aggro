@@ -24,6 +24,7 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
     context "on GET to new" do
       setup do
         @wire = Wire.make
+        @wire.save
         get '/admin/feeds/new'
       end
 
@@ -39,6 +40,8 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
 
     context "on GET to edit" do
       setup do
+        @wire = Wire.make
+        @wire.save
         @feed = Factory.make_stubbed_feed
         @feed.save
         get "/admin/feeds/edit/#{@feed.id}"
@@ -48,6 +51,11 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
         assert last_response.ok?
         assert_match /#{@feed.url}/, last_response.body
       end
+      
+      should "insert the @wire name into the body" do
+        assert last_response.body.include?(@wire.name)
+      end      
+      
     end
 
     # context "on POST to notify" do

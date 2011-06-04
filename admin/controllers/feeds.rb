@@ -22,6 +22,7 @@ Admin.controllers :feeds do
   end
 
   get :edit, :with => :id do
+    @wires = Wire.all    
     @feed = Feed.find(params[:id])
     render 'feeds/edit'
   end
