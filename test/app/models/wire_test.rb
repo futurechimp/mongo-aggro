@@ -18,12 +18,12 @@ class WireTest < Test::Unit::TestCase
 
     context "feed_items method" do
       setup do
-        @wire = Factory.make_wire_with_feed_items
+        @wire = Factory.make_wire
       end
 
-      should "return an array of FeedItems for itself" #do
-      #   assert_equal(5, @wire.feed_items.length)
-      # end
+      should "return an array of FeedItems for itself" do
+        assert_equal(5, @wire.feed_items.length)
+      end
     end
     
   end
