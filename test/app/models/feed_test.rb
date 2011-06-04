@@ -51,7 +51,9 @@ class FeedTest < Test::Unit::TestCase
       end
     
       should "make a POST request to the octopus" do
-        assert_requested :post, subscription_url, successful_subscription_request_body(@feed)
+        assert_requested :post, 
+          subscription_url,
+          successful_subscription_request_body(@feed)
       end
     end
 
@@ -67,7 +69,22 @@ class FeedTest < Test::Unit::TestCase
             good_feed_content).items.length, @feed.feed_items.length)
         end
       end
-    end    
+    end
+    
+    # context "for a feed which includes images in its item descriptions" do
+    #   setup do
+    #     FeedItem.destroy_all
+    #     @feed = Factory.make_stubbed_feed
+    #     WebMock.allow_net_connect!
+    #     @feed.update_feed_items(good_feed_content)
+    #   end
+    # 
+    #   should "insert an image for each item in the feed" do
+    #     @feed.feed_items.each do |item|
+    #       assert_equal("blah", item.image.url)
+    #     end
+    #   end
+    # end   
     
   end
 end
