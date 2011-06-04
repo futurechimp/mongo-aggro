@@ -37,6 +37,20 @@ class ImageFinderTest < Test::Unit::TestCase
         largest_image = "http://www.somefakesite.com/huge.jpg"
         assert_nil(@model_object.largest_image(@data))
       end
+    end
+    
+    context "using sample data containing image URLs which 404" do
+      setup do
+        @data = "blah blah blah http://somenonexistentimage.com/foo.jpg"
+      end
+
+      should "return nil" do
+        largest_image = "http://www.somefakesite.com/huge.jpg"
+        stub_404(
+          "http://somenonexistentimage.com/foo.jpg"
+        )        
+        assert_nil(@model_object.largest_image(@data))
+      end
     end    
   end
   

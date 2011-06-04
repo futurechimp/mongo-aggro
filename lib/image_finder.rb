@@ -14,8 +14,8 @@ module ImageFinder
     maxsize = 0
     image_urls.each do |url|
       dimensions = FastImage.size(url)
-      area = dimensions[0] * dimensions[1]
-      if area > maxsize
+      area = dimensions[0] * dimensions[1] if dimensions
+      if dimensions && area > maxsize
         biggest = url
         maxsize = area
       end
