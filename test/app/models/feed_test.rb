@@ -27,8 +27,12 @@ class FeedTest < Test::Unit::TestCase
     end
     
     
-    should "validate presence of image"
-    
+    should "validate presence of image" do
+      @feed = Feed.make
+      assert @feed.valid?
+      @feed.remove_image!
+      assert !@feed.valid?   
+    end
     
     context "image upload" do
       setup do
