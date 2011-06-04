@@ -19,8 +19,8 @@ end
 Feed.blueprint do
   url
   default_moderation_status { "published" }
+  image { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }
   wire { Wire.make }
-  image { File.new(PADRINO_ROOT + "/test/fixtures/omegaman.jpg") }  
 end
 
 FeedItem.blueprint do
