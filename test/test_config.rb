@@ -1,6 +1,7 @@
 PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 require File.expand_path(File.dirname(__FILE__) + "/lib/image_finder_test.rb")
+require File.expand_path(File.dirname(__FILE__) + "/lib/octopus_test.rb")
 require File.expand_path(File.dirname(__FILE__) + 
   "/support/stubbed_octopus_calls")
 require File.expand_path(File.dirname(__FILE__) +
