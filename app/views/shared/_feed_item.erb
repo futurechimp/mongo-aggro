@@ -1,14 +1,20 @@
 <!-- start .feed-item -->
-<% classname = (rand(2) > 0) ? "" : "featured" %>
-<% size = classname == "featured" ? "medium" : "small" %>
-<div class="feed-item <%= classname %>">
+<div class="feed-item <%= feed_item.moderation_status %>">
   <p class="image">
-    <% item_image = feed_item.image.url %>
-    <%= link_to(image_tag(item_image, { :alt => "foo!" }), feed_item.url) %>
+    <%= link_to(
+      image_tag(feed_item.item_image, {:alt => feed_item.title}), 
+      feed_item.url) 
+    %>
   </p>
-  <p class="wire"> <%# link_to(feed_item.wire.name, "#") %> </p>
-  <p class="title"><%= link_to(feed_item.title, feed_item.url) %> </p>
-  <p class="date"><%= feed_item.date_published.strftime("%b %d %Y %H:%M:%S") %></p>
-  <p class="body"><%= shorten(Sanitize.clean(feed_item.body), 15) %></p>
+<!--  <p class="wire"> <%# link_to(feed_item.wire.name, "#") %> </p> -->
+  <p class="title">
+    <%= link_to(feed_item.title, feed_item.url) %>
+  </p>
+  <p class="date">
+    <%= feed_item.date_published.strftime("%b %d %Y %H:%M:%S") %>
+  </p>
+  <p class="body">
+    <%= shorten(Sanitize.clean(feed_item.body), 15) %>
+  </p>
 </div>
 <!-- end .feed-item -->
