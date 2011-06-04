@@ -1,5 +1,13 @@
 module ImageFinder
 
+  # Parses incoming feed data, partially downloads any images from their 
+  # remote locations, checks all image sizes, and returns the one with the 
+  # largest pixel area.
+  #
+  # @param [String] data some text.
+  #
+  # @return [String] the URL of the image having the largest pixel area, or nil.
+  #
   def largest_image(data)
     image_urls = parse(data)
     biggest = ""
@@ -12,7 +20,7 @@ module ImageFinder
         maxsize = area
       end
     end
-    biggest
+    return biggest == "" ? nil : biggest
   end
     
   private

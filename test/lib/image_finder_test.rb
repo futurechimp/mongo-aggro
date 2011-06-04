@@ -11,9 +11,8 @@ class ImageFinderTest < Test::Unit::TestCase
       @model_object = Foo.new
     end
 
-    context "using a sample feed" do
+    context "using sample data containing valid image URLs" do
       setup do
-        feed_file = File.open(File.dirname(__FILE__) + '/../support/sample.rss')   
         stub_request_for_large_feed_image(
           "http://www.somefakesite.com/huge.jpg"
         )
@@ -28,6 +27,17 @@ class ImageFinderTest < Test::Unit::TestCase
         assert_equal(largest_image, @model_object.largest_image(@data))
       end
     end
+    
+    context "using sample data containing no image URLs" do
+      setup do
+        @data = "blah blah blah"
+      end
+
+      should "return nil" do
+        largest_image = "http://www.somefakesite.com/huge.jpg"
+        assert_nil(@model_object.largest_image(@data))
+      end
+    end    
   end
   
   
