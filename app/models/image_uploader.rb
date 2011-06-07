@@ -14,10 +14,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   ##
-  # Directory where uploaded temp files will be stored (default is [root]/tmp)
+  # Store temporary image downloads in a top-level tmp folder.
   #
   def cache_dir
-    # Padrino.root("tmp")
     File.dirname(__FILE__) + '/../../tmp'
   end
 
