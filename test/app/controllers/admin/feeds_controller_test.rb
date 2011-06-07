@@ -63,6 +63,10 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
         context "on an empty feed" do
           setup do
             @feed = Factory.make_stubbed_feed
+            @wire = Wire.make
+            @wire.save
+            @feed.wire = @wire
+            @feed.save
             @original_feed_item_count = FeedItem.count
             @feed_length = FeedNormalizer::FeedNormalizer.parse(
                                         good_feed_content).entries.length

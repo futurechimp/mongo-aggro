@@ -14,14 +14,11 @@ class FeedItem
   field :title, :type => String
   field :date_published, :type => DateTime
   field :moderation_status, :type => String
+  field :raw, :type => String  
 
   # The CarrierWave uploader
   #
   mount_uploader :image, ImageUploader
-
-  # Callbacks
-  #
-  # before_create :retrieve_image
 
   # Validations
   #
@@ -50,16 +47,18 @@ class FeedItem
   
   # Set an index on :date_published for faster ordered retrieval.
   #
-  index :date_published
+  # index :date_published
 
-  private
-  
   # Retrieves the largest remote image from the web (using the ImageFinder
   # module) and inserts it into the database.
   #
   def retrieve_image
-    largest = largest_image(self.body)
-    self.remote_image_url = largest if largest
+    largest = largest_image(self.raw) if self.raw
+    if largest
+      puts "Using: #{largest} for #{title}"
+      self.remote_image_url = largest
+      self.save 
+    end
   end
 
 end

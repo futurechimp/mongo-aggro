@@ -39,25 +39,33 @@ class Feed
   # @param [String] data - the incoming raw feed data, in RSS, MediaRSS, or
   # Atom format.
   def update_feed_items(data)
-    feed = FeedNormalizer::FeedNormalizer.parse(data,
-                            :force_parser => FeedNormalizer::SimpleRssParser)
+    feed = FeedNormalizer::FeedNormalizer.parse(data)
     if feed.nil?
       puts "Error: nil or badly-formatted feed."
     else
-      raw_items = Hpricot(data).search("//item")
-      raw_items = Hpricot(data).search("//entry") if 
-        raw_items.nil? || raw_items.empty?
       feed.clean!
-      feed.entries.each do |entry|
-        feed_item = FeedItem.first(:conditions => { :url => entry.url })
-        feed_item = FeedItem.new unless feed_item
-        feed_item.feed_id = self.id
-        feed_item.title = entry.title
-        feed_item.url = entry.url
-        feed_item.body = Sanitize.clean(entry.content)
-        feed_item.date_published = entry.date_published
-        feed_item.wire_id = self.wire_id
-        self.feed_items << feed_item
+      raw_items = Hpricot(data).search("//item")
+      raw_items = Hpricot(data).search("//entry") if raw_items.nil? ||
+        raw_items.empty?
+      feed.entries.each_with_index do |entry, index|
+        begin
+          feed_item = FeedItem.first(:conditions => { :url => entry.url })
+          feed_item = FeedItem.new unless feed_item
+          feed_item.title = entry.title
+          feed_item.url = entry.url
+          feed_item.body = Sanitize.clean(entry.content)
+          feed_item.date_published = entry.date_published
+          feed_item.moderation_status = self.default_moderation_status
+          feed_item.wire = self.wire
+          feed_item.feed = self
+          feed_item.raw = raw_items[index].to_s if raw_items
+          puts "About to save: #{feed_item.title}"
+          feed_item.save!
+        rescue Exception => ex
+          puts ex.message
+          puts feed_item.title
+          puts feed_item.body
+        end
       end
     end
   end

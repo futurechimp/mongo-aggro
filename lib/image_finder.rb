@@ -13,6 +13,7 @@ module ImageFinder
     biggest = ""
     maxsize = 0
     image_urls.each do |url|
+      puts "FastImage check for #{url}"
       dimensions = FastImage.size(url)
       area = dimensions[0] * dimensions[1] if dimensions
       if dimensions && area > maxsize
@@ -20,6 +21,7 @@ module ImageFinder
         maxsize = area
       end
     end
+    puts "Biggest image: #{biggest}"
     return biggest == "" ? nil : biggest
   end
     
