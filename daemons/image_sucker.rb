@@ -1,43 +1,47 @@
 require 'rubygems'
 require 'eventmachine'
-require 'em-http-request'
-require 'couchrest'
-require 'couchrest_extended_document'
-require 'state_machine'
-require 'mini_magick'
+require 'mongoid'
+require 'carrierwave'
+require 'carrierwave/orm/mongoid'
+require 'fastimage'
 
-COUCHDB_NAME = 'aggro_development'
-COUCHDB = CouchRest.database!(COUCHDB_NAME)
+# Connection.new takes host, port
+host = 'localhost'
+port = Mongo::Connection::DEFAULT_PORT
+
+# database_name = case Padrino.env
+#   when :development then 'mongoaggro_development'
+#   when :production  then 'mongoaggro_production'
+#   when :test        then 'mongoaggro_test'
+# end
+
+database_name = 'mongoaggro_development'
+
+Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
+
+CarrierWave.configure do |config|
+  config.grid_fs_database = database_name
+  config.grid_fs_host = host
+end
+
 
 require File.dirname(__FILE__) + '/../lib/image_finder'
-require File.dirname(__FILE__) + '/../app/models/image'
+require File.dirname(__FILE__) + '/../app/models/image_uploader'
 require File.dirname(__FILE__) + '/../app/models/feed_item'
+require File.dirname(__FILE__) + '/../app/models/feed'
+require File.dirname(__FILE__) + '/../app/models/wire'
 
 EventMachine.run do
   EM.add_periodic_timer(2) do
-    create_image_objects_for_feed_items
-    download_new_images
+    download_images_for_feed_items
   end
 
-  def download_new_images
-    new_images = Image.by_state(:key => "new")
-    new_images.each do |image|
-      image.download!
+  def download_images_for_feed_items
+    feed_items = FeedItem.all
+    feed_items.each do |item|
+      item.retrieve_image
     end
   end
 
-  # Feed items are created through a bulk_save process, which doesn't hit
-  # CouchRest's callbacks - so we can't tell the object to create necessary
-  # Images for itself in an after_create callback.
-  #
-  # This method monitors the database for newly-created feed_items and
-  # creates new Image objects for them if necessary.
-  #
-  def create_image_objects_for_feed_items
-    new_feed_items = FeedItem.by_images_parsed(:key => false)
-    new_feed_items.each do |item|
-      item.create_images
-    end
-  end
 end
 
