@@ -21,6 +21,8 @@ gem 'bson_ext', :require => "mongo"
 gem 'mini_magick'
 gem 'feed-normalizer'
 gem 'ruby-debug', :group => ["development", "test"]
+gem 'state_machine'
+
 
 # Test requirements
 gem 'faker', :group => "test"
