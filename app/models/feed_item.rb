@@ -56,10 +56,10 @@ class FeedItem
   #
   def item_image
     if image?
-      return image.url if self.moderation_status == "featured"
+      return image.chopped.url if self.moderation_status == "featured"
       return image.small.url if self.moderation_status == "published"
     else
-      return feed.image.url if self.moderation_status == "featured"
+      return feed.image.chopped.url if self.moderation_status == "featured"
       return feed.image.small.url if self.moderation_status == "published"       
     end
   end
