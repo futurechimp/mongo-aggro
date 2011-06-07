@@ -47,7 +47,11 @@ class FeedItem
   
   # Set an index on :date_published for faster ordered retrieval.
   #
-  # index :date_published
+  index :date_published
+  
+  # Set an index on :url for faster retrieval.
+  #
+  index :url
 
   # Retrieves the largest remote image from the web (using the ImageFinder
   # module) and inserts it into the database.
