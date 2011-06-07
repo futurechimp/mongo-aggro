@@ -4,6 +4,7 @@ require 'mongoid'
 require 'carrierwave'
 require 'carrierwave/orm/mongoid'
 require 'fastimage'
+require 'state_machine'
 
 # Connection.new takes host, port
 host = 'localhost'
@@ -37,9 +38,9 @@ EventMachine.run do
   end
 
   def download_images_for_feed_items
-    feed_items = FeedItem.all
+    feed_items = FeedItem.not_downloaded_yet
     feed_items.each do |item|
-      item.retrieve_image
+      item.download_image!
     end
   end
 

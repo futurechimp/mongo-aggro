@@ -31,6 +31,25 @@ class FeedItem
   belongs_to :feed
   belongs_to :wire
   
+  # Scopes
+  #
+  scope :not_downloaded_yet, where(:state => "not_downloaded_yet")
+  scope :downloaded, where(:state => "downloaded")
+  
+  # State machine. Keeps track of whether this feed item has downloaded its image or not.
+  #
+  # We don't care if downloading the image succeeds or fails, we just want to mark this
+  # FeedItem as having been checked.
+  #
+  state_machine :initial => :not_downloaded_yet do
+    after_transition :on => :download_image, :do => :do_retrieve_image
+
+    event :download_image do
+      transition :not_downloaded_yet => :downloaded
+    end
+  end
+  
+  
   # @return [String] the URL of the item's image file, properly sized to 
   # match its moderation_status. If this FeedItem has no image, the
   # parent Feed's image gets returned instead.
@@ -53,10 +72,12 @@ class FeedItem
   #
   index :url
 
+  private
+
   # Retrieves the largest remote image from the web (using the ImageFinder
   # module) and inserts it into the database.
   #
-  def retrieve_image
+  def do_retrieve_image
     largest = largest_image(self.raw) if self.raw
     if largest
       puts "Using: #{largest} for #{title}"
