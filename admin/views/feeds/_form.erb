@@ -1,13 +1,13 @@
 <div class="group">
   <%= f.label :default_moderation_status %>
   <%= f.error_message_on :default_moderation_status %>
-  <%= f.text_field :default_moderation_status, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <%= f.select :default_moderation_status, :options => ['published', 'featured'] %>
 </div>
+
 <div class="group">
   <%= f.label :url %><%= f.error_message_on :url %>
   <%= f.text_field :url, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <span class="description">Ex: http://foo.com/bar/blah.rss</span>
 </div>
 
 <div class="group">
