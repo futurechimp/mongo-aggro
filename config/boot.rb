@@ -31,4 +31,10 @@ end
 
 Padrino.load!
 
-SERVER_URL = "http://localhost:3000"
+if File.exist?("#{Padrino.root}/config/server.yml")
+  config = YAML.load_file("#{Padrino.root}/config/server.yml")
+  SERVER_URL = config["server"]["host"]
+end
+
+SERVER_URL = "http://localhost:3000" unless defined?(SERVER_URL)
+puts "Server url: #{SERVER_URL}"
