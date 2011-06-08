@@ -152,7 +152,7 @@ class FeedItemTest < Test::Unit::TestCase
               @feed_item.feed.image.small.url, 
               @feed_item.item_image
             )
-          end  
+          end
         end        
       end
     end
