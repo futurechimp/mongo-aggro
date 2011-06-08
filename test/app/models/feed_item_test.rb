@@ -130,7 +130,7 @@ class FeedItemTest < Test::Unit::TestCase
           
           should "return the image file path" do
             assert_equal(
-              "/grid/feed_item/image/#{@feed_item.to_param}/omegaman.jpg",
+              "/grid/feed_item/image/#{@feed_item.to_param}/chopped_omegaman.jpg",
               @feed_item.item_image
             )
           end
