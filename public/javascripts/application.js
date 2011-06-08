@@ -66,7 +66,7 @@ var Site = (function(){
     init:function(){
       checkForMobile();
       $("div#feed-items .date").each(function(index) {
-        $(this).text(relativeTime($(this).text()));
+        //$(this).text(relativeTime($(this).text()));
       });
       $("div#feed-items").masonry(masonryOptions);
     },
