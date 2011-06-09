@@ -25,7 +25,7 @@
   <h2>Topics</h2>
   <ul>
       <% @wires.each do |wire| %>
-        <li><%= wire.name %></li>
+        <li><%= link_to(wire.name, url(:wires, :show, :id => wire.id)) %></li>
       <% end %>
   </ul>
 <% end %>

@@ -23,7 +23,10 @@ Mongoaggro.controllers :wires do
   end
 
   get :show, :with => :id  do
-    
+    @wire = Wire.find(params[:id])
+    @wires = Wire.all
+    @feed_items = @wire.feed_items
+    render 'home/index'
   end
 
 end

@@ -37,6 +37,16 @@ class WiresControllerTest < Test::Unit::TestCase
           puts last_request.params
           assert last_response.ok?
         end
+        
+        should "display the wire name as a title"
+        
+        should "display all wire names in a list"
+        
+        should "display titles for @wire#feed_items" do
+          @feed_items.each do |item| 
+            assert_match /#{item.title}/, last_response.body
+          end
+        end
                 
       end
     end
