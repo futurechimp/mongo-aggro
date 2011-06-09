@@ -20,6 +20,7 @@ Mongoaggro.controllers :home do
 
   get :index, :map => "/" do
     @feed_items = FeedItem.order_by([:date_published, :desc]).limit(60)
+    @wires = Wire.all
     erb :"home/index"
   end
 

@@ -21,14 +21,14 @@
   <li id="just-head"><a href="#">Just Head</a></li>  
  </ul>
  <div id="topics" class="list">
+<% unless @wires.empty? %>
   <h2>Topics</h2>
   <ul>
-    <li><a href="#">Blah</a></li>
-    <li><a href="#">Foo</a></li>
-    <li><a href="#" class="on">Bar</a></li>
-    <li><a href="#">More Blah</a></li>
-    <li><a href="#">Potato</a></li>
+      <% @wires.each do |wire| %>
+        <li><%= wire.name %></li>
+      <% end %>
   </ul>
+<% end %>
  </div>
  <div id="tags">
   <h2>Bar:Tags</h2>

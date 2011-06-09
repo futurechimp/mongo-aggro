@@ -5,6 +5,7 @@ class HomeControllerTest < Test::Unit::TestCase
     
     setup do
       FeedItem.destroy_all
+      Wire.destroy_all
     end    
     
     context "with no FeedItems" do
@@ -40,7 +41,28 @@ class HomeControllerTest < Test::Unit::TestCase
           assert_match(/#{feed_item.title}/, last_response.body)
         end
       end
+    end
+    
+    context "with Wires" do
+      setup do
+        @wire = Wire.make
+        @wire.save
+        get '/'
+      end
       
+      should "output the @wire#name" do
+        assert_match(/#{@wire.name}/, last_response.body)
+      end
+    end  
+    
+    context "with no Wires" do
+      setup do
+        get '/'
+      end
+      
+      should "not output the Topics list" do
+        assert_no_match(/<h2>Topics<\/h2>/, last_response.body)
+      end
     end    
   end
 end
