@@ -13,15 +13,31 @@ class WiresControllerTest < Test::Unit::TestCase
     end
     
     context "show action" do
-      setup do
-        @wire = Wire.make
-        @wire.save
-        get "/wires/show/#{@wire.id}"
+      context "when the @wire has no feed_items" do
+        setup do
+          @wire = Wire.make
+          @wire.save
+          get "/wires/show/#{@wire.id}"
+        end
+
+        should "work" do
+          puts last_request.params
+          assert last_response.ok?
+        end
       end
       
-      should "work" do
-        puts last_request.params
-        assert last_response.ok?
+      context "when the @wire has feed_items" do
+        setup do
+          @wire = Factory.make_wire
+          @feed_items = @wire.feed_items
+          get "/wires/show/#{@wire.id}"
+        end
+        
+        should "work" do
+          puts last_request.params
+          assert last_response.ok?
+        end
+                
       end
     end
   end
