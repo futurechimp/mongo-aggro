@@ -1,8 +1,10 @@
 <!-- start .feed-item -->
 <div class="feed-item <%= feed_item.moderation_status %>">
+  <% size = feed_item.moderation_status == "featured" ? "300" : "140 "%>
   <p class="image">
     <%= link_to(
-      image_tag(feed_item.item_image, {:alt => feed_item.title}), 
+      image_tag(feed_item.item_image, 
+            {:alt => feed_item.title, :height => size, :width => size}), 
       feed_item.url) 
     %>
   </p>
