@@ -25,7 +25,7 @@ Mongoaggro.controllers :wires do
   get :show, :with => :id  do
     @wire = Wire.find(params[:id])
     @wires = Wire.all.order_by([:name, :asc])
-    @feed_items = @wire.feed_items
+    @feed_items = @wire.feed_items.limit(60)
     render 'home/index'
   end
 
