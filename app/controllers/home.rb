@@ -20,7 +20,7 @@ Mongoaggro.controllers :home do
 
   get :index, :map => "/" do
     @feed_items = FeedItem.order_by([:date_published, :desc]).limit(60)
-    @wires = Wire.all
+    @wires = Wire.all.order_by([:name, :asc])
     render "home/index"
   end
 
