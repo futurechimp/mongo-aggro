@@ -39,10 +39,11 @@ module ImageFinder
     _image_urls = uris.select{|u|
       begin
         uri = URI.parse(u)
-      rescue URI::InvalidURIError
+      rescue Exception => ex
         # Feel no pain! This guards against crappy uri parsing errors,
         # e.g. on "URIs" like "TRON:" (which I'm getting an error on right
-        # now).
+        # now). 
+        puts "Imagefinder exception: #{ex}"
       end
       if uri && uri.path
         File.extname(uri.path) == ".jpg" || 
