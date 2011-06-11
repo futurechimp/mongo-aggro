@@ -6,22 +6,17 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-# require 'eventmachine'
-# require 'mongoid'
-# require 'carrierwave'
 require 'carrierwave/orm/mongoid'
-# require 'fastimage'
-# require 'state_machine'
 
 # Connection.new takes host, port
 host = 'localhost'
 port = Mongo::Connection::DEFAULT_PORT
 
-# database_name = case Padrino.env
-#   when :development then 'mongoaggro_development'
-#   when :production  then 'mongoaggro_production'
-#   when :test        then 'mongoaggro_test'
-# end
+database_name = case PADRINO_ENV.to_sym
+  when :development then 'mongoaggro_development'
+  when :production  then 'mongoaggro_production'
+  when :test        then 'mongoaggro_test'
+end
 
 database_name = 'mongoaggro_development'
 
