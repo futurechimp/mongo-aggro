@@ -18,8 +18,6 @@ database_name = case PADRINO_ENV.to_sym
   when :test        then 'mongoaggro_test'
 end
 
-database_name = 'mongoaggro_development'
-
 Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
 
 CarrierWave.configure do |config|
