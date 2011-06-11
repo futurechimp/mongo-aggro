@@ -11,7 +11,7 @@ class Octopus
       :body => {
         :net_resource => { :url => feed.url },
         :subscription => {
-          :url => "#{::SERVER_URL}/admin/feeds/notify/#{feed.id}"
+          :url => "#{::SERVER_URL}/updates/notify/#{feed.id}"
         }
       }
     }
@@ -19,4 +19,3 @@ class Octopus
   end
 
 end
-
