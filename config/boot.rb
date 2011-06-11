@@ -41,7 +41,7 @@ end
 SERVER_URL = "http://localhost:3000" unless defined?(SERVER_URL)
 puts "Server url: #{SERVER_URL}"
 
-OCTOPUS_HOST = config["octopus"]["host"] unless defined?(OCTOPUS_HOST)
-OCTOPUS_PORT = config["octopus"]["port"] unless defined?(OCTOPUS_PORT)
+OCTOPUS_HOST = "localhost" unless defined?(OCTOPUS_HOST)
+OCTOPUS_PORT = "2001" unless defined?(OCTOPUS_PORT)
 OCTOPUS_URL = "http://#{OCTOPUS_HOST}:#{OCTOPUS_PORT}"
-
+puts "Octopus url: #{OCTOPUS_URL}"
