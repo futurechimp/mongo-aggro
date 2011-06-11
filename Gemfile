@@ -22,7 +22,7 @@ gem 'mini_magick'
 gem 'feed-normalizer'
 gem 'ruby-debug', :group => ["development", "test"]
 gem 'state_machine'
-
+gem 'eventmachine'
 
 # Test requirements
 gem 'faker', :group => "test"

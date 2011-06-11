@@ -18,6 +18,7 @@ GEM
     crack (0.1.8)
     diff-lcs (1.1.2)
     erubis (2.7.0)
+    eventmachine (0.12.10)
     faker (0.9.5)
       i18n (~> 0.4)
     fastimage (1.2.8)
@@ -124,6 +125,7 @@ DEPENDENCIES
   bson_ext
   carrierwave
   erubis (~> 2.7.0)
+  eventmachine
   faker
   fastimage
   feed-normalizer
