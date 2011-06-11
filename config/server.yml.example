@@ -1,2 +1,5 @@
 server:
   host: "http://localhost:3000"
+octopus:
+  host: localhost
+  port: 2001

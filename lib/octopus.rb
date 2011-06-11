@@ -1,7 +1,7 @@
 class Octopus
 
   include HTTParty
-  base_uri "http://octopus:2001"
+  base_uri OCTOPUS_URL
   basic_auth "admin", "admin"
 
   # Adds a resource to the Octopus.
