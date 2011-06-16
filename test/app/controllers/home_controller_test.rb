@@ -17,8 +17,8 @@ class HomeControllerTest < Test::Unit::TestCase
         assert last_response.ok?
       end  
       
-      should "have the 'labs' title in the layout" do
-        assert_match "Labs", last_response.body
+      should "have the 'aggro' title in the layout" do
+        assert_match "Aggro", last_response.body
       end
     end
     
@@ -32,8 +32,8 @@ class HomeControllerTest < Test::Unit::TestCase
         assert last_response.ok?
       end
       
-      should "have the 'labs' title in the layout" do
-        assert_match "Labs", last_response.body
+      should "have the 'aggro' title in the layout" do
+        assert_match "Aggro", last_response.body
       end  
       
       should "output the @feed_item title" do

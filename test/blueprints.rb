@@ -14,6 +14,9 @@ end
 Account.blueprint do
   name
   email
+  password { "password" }
+  password_confirmation { "password" }
+  role { "user" }
 end
 
 Feed.blueprint do
@@ -49,6 +52,12 @@ module Factory
 
     include TestHelper::StubbedOctopusCalls
     include WebMock
+
+    def make_admin
+      account = Account.make(:role => "admin")
+      account.save!
+      account
+    end
 
     # Returns a Feed object with a pseudo-random uuid as its id.  We use the
     # bullshit_uuid because Machinist doesn't set an id on the new feed object

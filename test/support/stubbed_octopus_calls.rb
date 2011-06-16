@@ -9,12 +9,12 @@ module TestHelper
       {
         :body => {
         :net_resource => {:url => feed.url},
-        :subscription => {:url => "#{::SERVER_URL}/admin/feeds/notify/#{feed.id}"}
+        :subscription => {:url => "#{::SERVER_URL}/updates/notify/#{feed.id}"}
       }}
     end
 
     def subscription_url
-      "http://admin:admin@octopus:2001/create"
+      "http://admin:admin@localhost:2001/create"
     end
 
     def good_feed_content

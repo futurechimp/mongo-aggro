@@ -79,6 +79,10 @@ class FeedTest < Test::Unit::TestCase
             good_feed_content).items.length, @feed.feed_items.length)
         end
       end
+      
+      context "updating when an item in the feed has no content" do
+        should "work"
+      end
     end
     
     # context "for a feed which includes images in its item descriptions" do

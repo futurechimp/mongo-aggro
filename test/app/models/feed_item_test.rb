@@ -139,7 +139,7 @@ class FeedItemTest < Test::Unit::TestCase
       
       context "with no image attached" do
         setup do
-          stub_request(:any, "http://admin:admin@octopus:2001/create")
+          stub_request(:any, "http://admin:admin@localhost:2001/create")
           @feed_item = FeedItem.make(:with_feed_and_wire)
           @feed_item.feed.image = File.new(
                                   PADRINO_ROOT + "/test/fixtures/omegaman.jpg")

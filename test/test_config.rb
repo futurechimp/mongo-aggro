@@ -19,7 +19,7 @@ class Test::Unit::TestCase
   include TestHelper::StubbedOctopusCalls
   include TestHelper::StubbedWebRequests
 
-  WebMock.disable_net_connect!(:allow_localhost => true)
+  WebMock.disable_net_connect!
 
   def app
     ##
@@ -38,6 +38,13 @@ class Test::Unit::TestCase
     File.expand_path(
       File.dirname(__FILE__) + "/fixtures/tiny.png"
     )
+  end
+  
+  def login_as(account)
+    post "/admin/sessions/create", {
+      :email => account.email, :password => "password"
+    }
+    follow_redirect!
   end
 
     
