@@ -53,7 +53,7 @@ class Feed
           feed_item = FeedItem.new unless feed_item
           feed_item.title = entry.title
           feed_item.url = entry.url
-          feed_item.body = Sanitize.clean(entry.content)
+          feed_item.body = Sanitize.clean(entry.content) if entry.content
           feed_item.date_published = entry.date_published
           feed_item.moderation_status = self.default_moderation_status
           feed_item.wire = self.wire
