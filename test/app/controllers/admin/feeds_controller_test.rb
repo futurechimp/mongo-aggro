@@ -6,6 +6,7 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
 
     setup do
       Account.delete_all
+      Feed.delete_all
     end
     
     context "when logged in" do
@@ -66,7 +67,28 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
           assert last_response.body.include?(@wire.name)
         end
 
-      end    
+      end  
+      
+      context "on PUT to update" do
+        setup do
+          @wire = Wire.make
+          @wire.save!
+          @other_wire = Wire.make
+          @other_wire.save!
+          @feed = Factory.make_stubbed_feed
+          @feed.wire = @wire
+          @feed.save
+          put "/admin/feeds/update/#{@feed.id}", { 
+            :feed => { :wire_id => @other_wire.id }
+          }
+          @feed.reload
+        end
+        
+        should "update the wire" do
+          assert_equal(@other_wire.id, @feed.wire.id)
+        end
+      end
+        
     end
 
 

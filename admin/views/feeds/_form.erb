@@ -11,8 +11,8 @@
 </div>
 
 <div class="group">
-  <%= f.label :wire %><%= f.error_message_on :wire %>
-  <%= f.select :wire, :collection => @wires, :fields => [:name, :id]  %>
+  <%= f.label :wire_id %><%= f.error_message_on :wire_id %>
+  <%= f.select :wire_id, :collection => @wires, :fields => [:name, :id] %>
   <span class="description">Please choose a wire.</span>
 </div>
 
