@@ -7,6 +7,7 @@ require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
 require 'carrierwave/orm/mongoid'
+require 'logger'
 
 # Connection.new takes host, port
 host = 'localhost'
@@ -38,11 +39,27 @@ EventMachine.run do
   end
 
   def download_images_for_feed_items
-    feed_items = FeedItem.not_downloaded_yet
-    feed_items.each do |item|
-      item.download_image!
+    begin
+      feed_items = FeedItem.not_downloaded_yet
+      feed_items.each do |item|
+        item.download_image!
+      end
+    rescue Exception => ex
+      log.debug "Pow! #{ex}"
     end
   end
 
-  puts "image_sucker loaded"
+  log = Logger.new("suck.log")
+  log.debug "image_sucker loaded"
+  
+  at_exit do
+    if $!.nil? || $!.is_a?(SystemExit) && $!.success?
+      log.debug 'Shutting down cleanly'
+    else
+      code = $!.is_a?(SystemExit) ? $!.status : 1
+      log.debug "Exiting with code #{code}"
+    end
+  end
+  
+  
 end
