@@ -18,8 +18,7 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
       context "on GET to index" do
         setup do
           FeedItem.destroy_all
-          @feed_item = FeedItem.make
-          @feed_item.save
+          @feed = Factory.make_stubbed_feed
           get '/admin/feeds'
         end
 
@@ -27,8 +26,8 @@ class Admin::FeedsControllerTest < Test::Unit::TestCase
           assert last_response.ok?
         end
 
-        should "display the url of @feed_item" do
-          assert_match @feed_item.url, last_response.body
+        should "display the url of the @feed" do
+          assert_match @feed.url, last_response.body
         end
       end
 
