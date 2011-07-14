@@ -2,7 +2,7 @@ class FeedItem
   include Mongoid::Document
   include Mongoid::Timestamps # adds created_at and updated_at fields
   
-  # the ImageFinder module finds the largest image for us
+  # The ImageFinder module finds the largest image for us
   #
   include ImageFinder
 
@@ -36,10 +36,11 @@ class FeedItem
   scope :not_downloaded_yet, where(:state => "not_downloaded_yet")
   scope :downloaded, where(:state => "downloaded")
   
-  # State machine. Keeps track of whether this feed item has downloaded its image or not.
+  # State machine. Keeps track of whether this feed item has downloaded its
+  # image or not.
   #
-  # We don't care if downloading the image succeeds or fails, we just want to mark this
-  # FeedItem as having been checked.
+  # We don't care if downloading the image succeeds or fails, we just want to
+  # mark this FeedItem as having been checked.
   #
   state_machine :initial => :not_downloaded_yet do
     after_transition :on => :download_image, :do => :do_retrieve_image
