@@ -73,18 +73,18 @@ module Factory
       
     def make_wire
       wire = Wire.make
-      wire.save
+      wire.save!
 
       feed = Feed.make
       stub_successful_net_resource_creation(feed)
-      feed.save
+      feed.save!
       wire.feeds << feed
       
       5.times do
         feed_item = FeedItem.make
         wire.feed_items << feed_item
         wire.feeds.first.feed_items << feed_item
-        feed_item.save
+        feed_item.save!
       end
       wire
     end
